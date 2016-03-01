@@ -110,11 +110,13 @@ module FSM_Testbench;
 	rst = 0;
 	Funct_Select = 1'b0;
 	for(i=4'b0;i<16;i=i+1)
+	always@ posedge clck
 	begin
 	Count_CT <= i;
 	Count_F <= i;
 	end
 	#1000 $stop;
 	end*/
+	
 endmodule
 

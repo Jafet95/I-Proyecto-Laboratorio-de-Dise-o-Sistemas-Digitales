@@ -24,7 +24,7 @@ input wire rst,clk;
 output reg out;
  
 always@(clk,in,ref,rst)
-if (~rst) out = 1'b0;
+if (rst) out = 1'b0;
 else if (in > ref) out = 1'b1;
 else out = 1'b0;
 endmodule
