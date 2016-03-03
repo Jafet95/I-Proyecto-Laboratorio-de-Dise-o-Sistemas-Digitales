@@ -50,8 +50,6 @@ module Comp_16bits_tb;
 		#100;
         
 		// Add stimulus here
-		
-		
 
 	end
       

@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Jafet Chaves Barrantes
 // 
-// Create Date:    15:18:58 02/21/2016 
+// Create Date:    18:53:02 03/02/2016 
 // Design Name: 
-// Module Name:    Demux 
+// Module Name:    Distribucion_Salida 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,15 +18,16 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Demux (out,in,sel);
+module Distribucion_Salida
+(	 
+	 input wire In_signal_conmutacion,
+	 input wire select_salida,
+	 output wire [1:0] Out_signal_conmutacion 
+);
 
-parameter nO = 2; //número de salidas
-parameter nS = 1; //número de entradas de selección
-
-output[nO-1:0] out; //demux out
-input in; //demux input 
-input[nS-1:0] sel; //demux select signal
-
-assign out = in << sel; //shift left in tantas sel veces
+Demux Instancia_Demux(
+.out(Out_signal_conmutacion),
+.in(In_signal_conmutacion),
+.sel(select_salida));
 
 endmodule
