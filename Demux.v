@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Demux (out,in,sel);
 
-parameter nO = 2; //número de salidas
-parameter nS = 1; //número de entradas de selección
+parameter nO = 4;
+parameter nS = 2;
 
 output[nO-1:0] out; //demux out
 input in; //demux input 

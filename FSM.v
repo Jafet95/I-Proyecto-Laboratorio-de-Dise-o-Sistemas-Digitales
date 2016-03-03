@@ -25,8 +25,8 @@ module FSM
 	input wire clk,rst, //	Clock y reset
 	input wire Funct_Select,// Entradas
 	input wire [3:0] Count_CT,Count_F,// Entradas
-	output reg [3:0] C_Digit, //Current digit y current 7 segmentos
-	output reg [3:0] C_7Seg  // Salidas, definidas como reg
+	output reg [3:0]C_Digit, //Current digit y current 7 segmentos
+	output reg [3:0]C_7Seg  // Salidas, definidas como reg
 );
 
 wire [3:0] Multiplexed_Count;

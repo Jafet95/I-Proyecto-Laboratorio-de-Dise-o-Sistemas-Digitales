@@ -67,7 +67,7 @@ module FSM_Testbench;
         
 		// Add stimulus here
 		
-	/*initial begin
+	initial begin
 	
 		rst = 1;
 		Funct_Select = 1'b0;
@@ -95,9 +95,9 @@ module FSM_Testbench;
 		Count_F = 4'b0001;
 		#1000 $stop;
 		
-	end*/
+	end
 	
-	reg [3:0] i;
+	/*reg [3:0] i;
 	
 	initial begin
 	
@@ -110,11 +110,13 @@ module FSM_Testbench;
 	rst = 0;
 	Funct_Select = 1'b0;
 	for(i=4'b0;i<16;i=i+1)
+	always@ posedge clck
 	begin
 	Count_CT <= i;
 	Count_F <= i;
 	end
 	#1000 $stop;
-	end
+	end*/
+	
 endmodule
 

@@ -18,11 +18,10 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MDF(clk,rst,entrada,salida,salida_1kHz,q);
+module MDF(clk,rst,entrada,salida,q);
 input wire clk,rst;
 input wire [3:0]entrada;
 output wire salida;
-output wire salida_1kHz;
 output wire [10:0]q;
 	  
 Traductor Conv(
@@ -36,8 +35,7 @@ DivFrec DF(
     .clk(clk), 
     .rst(rst), 
     .div(q), 
-    .clkd(salida),
-	 .clk_1kHz(salida_1kHz)
+    .clkd(salida)
     );	 
 	 
 

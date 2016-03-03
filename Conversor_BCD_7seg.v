@@ -39,10 +39,10 @@ case(Valor_Decimal)
 4'h4: Code_7seg = 8'b10011001; //4
 4'h5: Code_7seg = 8'b01001001; //5
 4'h6: Code_7seg = 8'b01000001; //6
-4'h7: Code_7seg = 8'b00011111; //7
-4'h8: Code_7seg = 8'b00000001; //8
-4'h9: Code_7seg = 8'b00001001; //9
-default: Code_7seg = 8'b11111111; //Caso default no enciende el 7 seg
+4'h7: Code_7seg = 8'b00011111; //8
+4'h8: Code_7seg = 8'b00000001; //9
+4'h9: Code_7seg = 8'b00001001; //Caso default no enciende el 7 seg
+default: Code_7seg = 8'b11111111; 
 
 endcase
 

@@ -23,53 +23,44 @@ module Registro_Universal
 	(
 		input wire aumentar, //boton aumentar
 		input wire disminuir, //boton disminuir
+		input wire funct_select, //seleccion funcion
 		input wire clk, //system clock
 		input wire reset, //system reset
-		input wire chip_select, //Control data (funct_select)
-		output wire out_aumentar, //boton aumentar
-		output wire out_disminuir //boton disminuir    
+		input wire chip_select, //Control data
+		output reg out_aumentar, //boton aumentar
+		output reg out_disminuir, //boton disminuir
+		output reg out_funct_select //seleccion funcion      
     );
 
 //body
 
-reg aumentar_actual,disminuir_actual,aumentar_next,disminuir_next;
-
+//Combinacional
 always@(posedge clk, posedge reset)
-	begin
-		if (reset)
+	if(reset)
 		begin
-		aumentar_actual <= 0;
-		disminuir_actual <= 0;
+		out_aumentar = 1'b0;
+		out_disminuir = 1'b0;
+		out_funct_select = 1'b0;
 		end
 
-		else
-		begin
-		aumentar_actual <= aumentar_next;
-		disminuir_actual <= disminuir_next;
-		end
-	end
-
+//Secuencial
 always@*
-	begin
-	
 	case(chip_select)
-	
-	1'b0: //Hold
-	begin
-	aumentar_next = aumentar_actual;
-	disminuir_next = disminuir_actual;
-	end
-	1'b1: //Load
-	begin
-	aumentar_next = aumentar;
-	disminuir_next = disminuir;
-	end
+		//hold
+		1'b0:
+		begin
+		out_aumentar <= out_aumentar;
+		out_disminuir <= out_disminuir;
+		out_funct_select <= out_funct_select;
+		end
+		//load
+		1'b1:
+		begin
+		out_aumentar <= aumentar;
+		out_disminuir <= disminuir;
+		out_funct_select <= funct_select;
+		end
 	endcase
-	
-	end
-
-assign out_aumentar = aumentar_actual;
-assign out_disminuir = disminuir_actual;
 
 endmodule
 
