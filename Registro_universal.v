@@ -47,14 +47,14 @@ always@(posedge clk, posedge reset)
 always@*
 	case(chip_select)
 		//hold
-		1'b0:
+		1'b1:
 		begin
 		out_aumentar <= out_aumentar;
 		out_disminuir <= out_disminuir;
 		out_funct_select <= out_funct_select;
 		end
 		//load
-		1'b1:
+		1'b0:
 		begin
 		out_aumentar <= aumentar;
 		out_disminuir <= disminuir;

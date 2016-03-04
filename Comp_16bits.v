@@ -19,11 +19,11 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Comp_16bits(in,out,rst,ref,clk);
-input wire [15:0] in, ref;
+input wire [3:0] in, ref;
 input wire rst,clk;
 output reg out;
  
-always@(clk,in,ref,rst)
+always@(posedge clk, in, ref,posedge rst)
 if (rst) out = 1'b0;
 else if (in > ref) out = 1'b1;
 else out = 1'b0;

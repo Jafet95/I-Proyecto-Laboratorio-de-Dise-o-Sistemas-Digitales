@@ -18,50 +18,30 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Universal_Binary_Counter
-	
-	# (parameter N = 4)
-	(
-		input wire clk,
-		input wire reset,
-		input wire en,
-		input wire load,
-		input wire up,
-		input wire sys_clr,
-		input wire [N-1:0] d,
-		output wire max_value_tick,
-		output wire min_value_tick,
-		output wire [N-1:0] q
-		
-    );
+module Universal_Binary_Counter(	
+out     ,  // Output of the counter
+clk     ,  // clock Input
+rst      // reset Input
+);
 
-//Signal Declarations
-reg [N-1:0] q_act, q_next;
-
-
-//Body of "state" registers
-always@(posedge clk,posedge reset)
-	if(reset)
-		q_act <= 4'h0;
-	else
-		q_act <= q_next;
-
-//Specified functions of the counter 		
-always@*
-	if(sys_clr)
-		q_next = 4'h0;
-	else if(load)
-		q_next = d;
-	else if(en & up)
-		q_next = q_act + 4'h1;
-	else if(en & ~up)
-		q_next = q_act - 4'h1;
-	else
-		q_next = q_act;
-
-
-//Output Logic
-assign q = q_act;
-assign max_value_tick = (q_act == 2**N - 1) ? 1'b1:1'b0;
-assign min_value_tick = (q_act == 0) ? 1'b1:1'b0; 
+output reg [3:0] out;
+input  clk, rst;
+reg bandera;
+	 
+always @(posedge clk, posedge rst)
+if (rst) begin
+  out <= 8'b0;
+  bandera = 0;
+end 
+else if (bandera == 0) 
+	begin
+	out <= out + 4'b1;
+	if (out==16) out <=4 'b0;
+	end
+/*else if (bandera==1)
+	begin
+	out <= out - 4'b1;
+	if(out==0) bandera =1;
+	end
+*/
 endmodule
