@@ -27,19 +27,16 @@ wire c1,c2,c3;
 FFD FF1(
     .dato(dato), 
     .clk(clk), 
-    .rst(rst), 
     .q(c1)
     );
 FFD FF2(
     .dato(c1), 
     .clk(clk), 
-    .rst(rst), 
     .q(c2)
     );
 FFD FF3(
     .dato(c2), 
     .clk(clk), 
-    .rst(rst), 
     .q(c3)
     );
 	 

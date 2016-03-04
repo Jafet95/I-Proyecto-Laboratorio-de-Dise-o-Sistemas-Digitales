@@ -24,47 +24,48 @@ module Modificacion_Ciclo_Trabajo(
 	input wire rst,
 	input wire up,
 	input wire down,
-	input wire func_select,
-	input wire chip_select,
+	input wire chip_select, //Tanto para seleccionar el registro como para habilitar el contador universal
 	output wire signal_out,
 	output wire [3:0]ciclo_actual	
 	
     );
 	 
-Comp_16bits Comparador (
-    .in(q), 
+wire [3:0] ref; //Referencia que entra al comparador a partir del contador A/D
+	 
+Comp_16bits Instancia_Comparador (
+    .in(ciclo_actual), 
     .out(signal_out), 
     .rst(rst), 
     .ref(ref), 
-    .clk(clk_trabajo)
+    .clk(clk_de_trabajo)
     );
  
-Registro_Universal Reg_universal (
+Registro_Universal Instancia_Reg_universal 
+(
     .aumentar(up), 
     .disminuir(down), 
-    .funct_select(func_select), 
     .clk(clk_100MHz), 
     .reset(rst), 
     .chip_select(chip_select), 
     .out_aumentar(out_aumentar), 
-    .out_disminuir(out_disminuir), 
-    .out_funct_select(out_funct_select)
+    .out_disminuir(out_disminuir)
     );
 
   
-Contador_Ascendente_Descendente Intancia_Contador_AD (
+Contador_Ascendente_Descendente Instancia_Contador_AD (
     .clk(clk_100MHz), 
     .reset(rst), 
     .enUP(out_aumentar), 
     .enDOWN(out_disminuir), 
-    .q(q)
+    .q(ref)
     );
 	 
-Universal_Binary_Counter Contador_Binario (
-    .clk(clk_100MHz), 
-    .rst(rst), 
-    .out(ref)
-    );
-assign ciclo_actual = q;
-	 
+Contador_conResetEnable Inst
+(
+.clk(clk_de_trabajo),
+.reset(rst),
+.en(chip_select),
+.q(ciclo_actual)
+ );
+ 
 endmodule

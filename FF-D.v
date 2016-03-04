@@ -18,15 +18,12 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module FFD(dato,clk,rst,q);
-input dato, clk, rst ; 
+module FFD(dato,clk,q);
+input dato, clk; 
 output reg q;
 
 always @ ( posedge clk)
-if (rst) begin
-  q <= 1'b0;
-end  
-else begin
+begin
   q <= dato;
 end
 endmodule

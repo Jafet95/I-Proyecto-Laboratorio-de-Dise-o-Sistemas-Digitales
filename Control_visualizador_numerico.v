@@ -25,7 +25,7 @@ input wire [3:0] cuenta_CT,
 input wire clock,
 input wire reset,
 input wire funct_select,
-output wire [7:0] code_digitos_decimal, //secuencia para mostrar el d?gito correcto
+output wire [7:0] code_digitos_decimal, //secuencia para mostrar el digito correcto
 output wire [3:0] code_7seg //secuencia para encender el 7 segmentos correcto
 );
 

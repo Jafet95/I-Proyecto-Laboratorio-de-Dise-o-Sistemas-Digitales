@@ -69,8 +69,6 @@ end
 
 //Parte Combinacional
 
-
-
 always@*
 begin
 	state_next = state;

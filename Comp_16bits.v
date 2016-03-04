@@ -23,7 +23,7 @@ input wire [3:0] in, ref;
 input wire rst,clk;
 output reg out;
  
-always@(posedge clk, in, ref,posedge rst)
+always@(posedge clk,posedge rst)
 if (rst) out = 1'b0;
 else if (in > ref) out = 1'b1;
 else out = 1'b0;
