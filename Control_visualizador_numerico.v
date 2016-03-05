@@ -40,7 +40,7 @@ FSM Instancia_FSM
 .Count_F(cuenta_frec),
 .C_Digit(OutFSM_InConversorBCD), 
 .C_7Seg(code_7seg)  
-);
+); 
 
 Conversor_BCD_7seg Instancia_Conversor_BCD_7seg
 (

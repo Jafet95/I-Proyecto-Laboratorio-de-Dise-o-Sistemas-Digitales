@@ -24,15 +24,21 @@ module FSM
 (
 	input wire clk,rst, //	Clock y reset
 	input wire Funct_Select,// Entradas
-	input wire [3:0] Count_CT,Count_F,// Entradas
+	input wire [3:0] Count_CT,
+	input wire [3:0] Count_F,
 	output reg [3:0]C_Digit, //Current digit y current 7 segmentos
 	output reg [3:0]C_7Seg  // Salidas, definidas como reg
 );
 
 wire [3:0] Multiplexed_Count;
 
-Mux_2x1 instancia_Mux_2x1 (.Seleccion(Funct_Select),.D1(Count_CT),.D0(Count_F),.Y(Multiplexed_Count));
-
+//Mux_2x1 instancia_Mux_2x1 (.Seleccion(Funct_Select),.D1(Count_CT),.D0(Count_F),.Y(Multiplexed_Count));
+Mux_2x1 instancia_MUX_2x1 (
+    .Seleccion(Funct_Select), 
+    .D1(Count_CT), 
+    .D0(Count_F), 
+    .Y(Multiplexed_Count)
+    );
 //*********************************************************
 
 localparam [3:0] 

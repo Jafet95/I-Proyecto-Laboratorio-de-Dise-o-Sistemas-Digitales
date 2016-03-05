@@ -40,7 +40,7 @@ wire reinicio_sincronizado;
 
 wire [3:0] OutCuenta_Modificacion_Frec_Conmu_In_Control_visualizador_numerico;//Cuenta del modulo de modificacion de la frecuencia
 wire [3:0] OutCuenta_Modificacion_CT_In_Control_visualizador_numerico;//Cuenta del modulo de modificacion del ciclo de trabajo
-wire OutCLK1kHz_Modificacion_Frec_Conmu_In_Modificacion_Ciclo_Trabajo; //clock de  1 kHz fijo para la FSM
+wire OutCLK1kHz_Modificacion_Frec_Conmu_In_Control_visualizador_numerico; //clock de  1 kHz fijo para la FSM
 wire OutCLKVar_Modificacion_Frec_Conmu_In_Modificacion_CT;//Clock variable que entra al módulo de modificacion del ciclo de trabajo
 wire OutSignal_Modificacion_Ciclo_Trabajo_In_Distribucion_Salida; //Señal de conmutación hacia el bloque de distribución de salid
 
@@ -88,7 +88,7 @@ Control_visualizador_numerico Instancia_Control_visualizador_numerico
 .cuenta_CT(OutCuenta_Modificacion_CT_In_Control_visualizador_numerico),
 .clock(OutCLK1kHz_Modificacion_Frec_Conmu_In_Control_visualizador_numerico),
 .reset(reinicio_sincronizado),
-.funct_select(reinicio_sincronizado),
+.funct_select(seleccion_funcion_sincronizado),
 .code_digitos_decimal(catodos_7seg), //secuencia para mostrar el digito correcto
 .code_7seg(anodos_7seg) //secuencia para encender el 7 segmentos correcto
 );

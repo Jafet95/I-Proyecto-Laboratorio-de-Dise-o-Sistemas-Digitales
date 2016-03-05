@@ -25,6 +25,6 @@ output reg out;
  
 always@(posedge clk,posedge rst)
 if (rst) out = 1'b0;
-else if (in > ref) out = 1'b1;
+else if (in >= ref) out = 1'b1;
 else out = 1'b0;
 endmodule

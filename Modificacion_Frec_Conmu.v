@@ -42,7 +42,7 @@ Registro_Universal Instancia_Registro_Universal(
 .out_aumentar(OutRegistroAumentar_InContadorADAumentar), //boton aumentar
 .out_disminuir(OutRegistroDisminuir_InContadorADDisminuir) //boton disminuir    
 );
-
+ 
 Contador_Ascendente_Descendente Instancia_Contador_Ascendente_Descendente(
 .clk(CLK_100MHz),
 .reset(reset),

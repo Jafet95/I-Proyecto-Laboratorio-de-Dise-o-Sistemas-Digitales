@@ -38,10 +38,10 @@ else if (bandera == 0)
 	out <= out + 4'b1;
 	if (out==16) out <=4 'b0;
 	end
-/*else if (bandera==1)
+else if (bandera==1)
 	begin
 	out <= out - 4'b1;
 	if(out==0) bandera =1;
 	end
-*/
+
 endmodule

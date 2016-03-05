@@ -24,16 +24,16 @@ input wire Seleccion;
 input wire [3:0] D1,D0;
 output reg [3:0] Y;
 
-always @*
+always @* 
 
 begin
 
 case(Seleccion)
 
-1'b0: Y = D0;
-1'b1: Y = D1;
+1'b0: Y <= D0;
+1'b1: Y <= D1;
 
-endcase
+endcase 
 
 end
 
