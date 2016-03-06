@@ -60,11 +60,10 @@ Contador_Ascendente_Descendente Instancia_Contador_AD (
     .q(ref)
     );
 	 
-Contador_conResetEnable Inst
+Contador_conReset Instancia_Contador_conReset
 (
 .clk(clk_de_trabajo),
 .reset(rst),
-.en(chip_select),
 .q(ciclo_actual)
  );
  

@@ -29,7 +29,7 @@ output wire [7:0] code_digitos_decimal, //secuencia para mostrar el digito corre
 output wire [3:0] code_7seg //secuencia para encender el 7 segmentos correcto
 );
 
-wire [3:0] OutFSM_InConversorBCD; //Conexi?n entre la m?quina de estados y el conversor BCD a 7 segmentos
+wire [3:0] OutFSM_InConversorBCD; //Conexion entre la maquina de estados y el conversor BCD a 7 segmentos
 
 FSM Instancia_FSM
 (

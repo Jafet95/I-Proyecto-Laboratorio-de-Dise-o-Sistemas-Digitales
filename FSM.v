@@ -41,17 +41,19 @@ Mux_2x1 instancia_MUX_2x1 (
     );
 //*********************************************************
 
-localparam [3:0] 
+localparam [3:0]
+
 // Codificación de los estados o etiquetas
 Eval_Funct_Select = 4'b0000,
 Send_PNumb_CT = 4'b0001, //Mandar primer dígito ciclo de trabajo
 Send_SNumb_CT = 4'b0010, //Mandar segundo dígito ciclo de trabajo
 Send_TNumb_CT = 4'b0011, //Mandar tercer dígito ciclo de trabajo
 Send_CNumb_CT = 4'b0100, //Mandar cuarto dígito ciclo de trabajo
-Send_PNumb_F = 4'b0101, //Mandar quinto dígito frecuencia
-Send_SNumb_F = 4'b0110, //Mandar sexto dígito frecuencia
-Send_TNumb_F = 4'b0111, //Mandar septimo dígito frecuencia
-Send_CNumb_F = 4'b1000; //Mandar octavo dígito frecuencia
+Send_PNumb_F = 4'b0101, //Mandar primer dígito frecuencia
+Send_SNumb_F = 4'b0110, //Mandar segundo dígito frecuencia
+Send_TNumb_F = 4'b0111, //Mandar tercer dígito frecuencia
+Send_CNumb_F = 4'b1000; //Mandar cuarto dígito frecuencia
+
 
 reg [3:0] state, state_next; 
 // Reg, estado actual y siguiente
@@ -76,6 +78,7 @@ end
 //Parte Combinacional
 
 always@*
+
 begin
 	state_next = state;
 	C_Digit = 0;

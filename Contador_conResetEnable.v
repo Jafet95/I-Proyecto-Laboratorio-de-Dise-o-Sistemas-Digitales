@@ -18,12 +18,11 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module Contador_conResetEnable
+module Contador_conReset
 	# (parameter N = 4) // Para definir el número de bits del contador
 	(
 		input wire clk,
 		input wire reset,
-		input wire en,
 		output wire [N-1:0] q
     );
 
@@ -41,13 +40,8 @@ always@(posedge clk,posedge reset)
 //Specified functions of the counter 		
 always@*
 
-	if(en)
-		q_next = q_act + 1'b1;
+q_next = q_act + 1'b1;
 		
-	else
-		q_next = q_act;
-
-
 //Output Logic
 assign q = q_act;
 
