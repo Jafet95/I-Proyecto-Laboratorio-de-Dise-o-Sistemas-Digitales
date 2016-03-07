@@ -38,7 +38,7 @@ Registro_Universal Instancia_Registro_Universal(
 .disminuir(disminuir_Frec), //boton disminuir
 .clk(CLK_100MHz), //system clock
 .reset(reset), //system reset
-.chip_select(funct_select), //Control data (funct_select)
+.chip_select(~funct_select), //Control data (funct_select)
 .out_aumentar(OutRegistroAumentar_InContadorADAumentar), //boton aumentar
 .out_disminuir(OutRegistroDisminuir_InContadorADDisminuir) //boton disminuir    
 );

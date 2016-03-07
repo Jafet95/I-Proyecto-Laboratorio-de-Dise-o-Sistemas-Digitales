@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 10ns / 1ps
 
 ////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -85,23 +85,25 @@ module DPWM_TestBench;
 		boton_disminuir = 0;
 		seleccion_funcion = 0;
 		seleccion_salida = 0;
-		#10000000
+		#10
 		
-		/*reinicio = 0;
+		reinicio = 0;
 		boton_aumentar = 0;
 		boton_disminuir = 0;
 		seleccion_funcion = 0;
 		seleccion_salida = 0;
-		#10000000
+		#10
 		
 		reinicio = 0;
 		boton_aumentar = 1;
+		#20
+		boton_aumentar = 0;
 		boton_disminuir = 0;
 		seleccion_funcion = 0;
 		seleccion_salida = 0;
-		#200*/
+		#200
 		
-		#10000000 $stop;
+		#1000000$stop;
 		
 		end
       
