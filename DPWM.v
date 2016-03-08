@@ -26,8 +26,8 @@ input wire boton_disminuir,
 input wire seleccion_funcion,
 input wire seleccion_salida,
 input wire reinicio,
-output wire BUCK_Gate,
-output wire Full_Bridge,
+output reg BUCK_Gate,
+output reg Full_Bridge,
 output wire [3:0] anodos_7seg,
 output wire [7:0] catodos_7seg
 );
@@ -63,24 +63,25 @@ Modificacion_Frec_Conmu Instancia_Modificacion_Frec_Conmu
 .CLK_100MHz(CLK_FPGA_BOARD),
 .aumentar_Frec(boton_aumentar_sincronizado),
 .disminuir_Frec(boton_disminuir_sincronizado),
-.funct_select(seleccion_funcion_sincronizado),
+.funct_select(~seleccion_funcion_sincronizado),
 .reset(reinicio_sincronizado),
 .CLK_dividido(OutCLKVar_Modificacion_Frec_Conmu_In_Modificacion_CT),
 .CLK_1kHz(OutCLK1kHz_Modificacion_Frec_Conmu_In_Control_visualizador_numerico),
 .OutContadorAD_InMDF(OutCuenta_Modificacion_Frec_Conmu_In_Control_visualizador_numerico) //Conexiones entre contador y bloque MDF (traductor y divisor de clock), también para la FSM
 );
 
-Modificacion_Ciclo_Trabajo Instancia_Modificacion_Ciclo_Trabajo
-(
-.clk_100MHz(CLK_FPGA_BOARD),
-.clk_de_trabajo(OutCLKVar_Modificacion_Frec_Conmu_In_Modificacion_CT),
-.rst(reinicio_sincronizado),
-.up(boton_aumentar_sincronizado),
-.down(boton_disminuir_sincronizado),
-.chip_select(seleccion_funcion_sincronizado),
-.signal_out(OutSignal_Modificacion_Ciclo_Trabajo_In_Distribucion_Salida),
-.ciclo_actual(OutCuenta_Modificacion_CT_In_Control_visualizador_numerico)	
-);
+
+Modificacion_Ciclo_Trabajo Instancia_Modificacion_Ciclo_Trabajo (
+    .clk_100MHz(CLK_FPGA_BOARD), 
+    .clk_de_trabajo(OutCLKVar_Modificacion_Frec_Conmu_In_Modificacion_CT), 
+    .rst(reinicio_sincronizado), 
+    .up(boton_aumentar_sincronizado), 
+    .down(boton_disminuir_sincronizado), 
+    .chip_select(seleccion_funcion_sincronizado), 
+    .signal_out(OutSignal_Modificacion_Ciclo_Trabajo_In_Distribucion_Salida), 
+    .ciclo_actual(OutCuenta_Modificacion_CT_In_Control_visualizador_numerico)
+    );
+
 
 Control_visualizador_numerico Instancia_Control_visualizador_numerico
 (
@@ -93,11 +94,25 @@ Control_visualizador_numerico Instancia_Control_visualizador_numerico
 .code_7seg(anodos_7seg) //secuencia para encender el 7 segmentos correcto
 );
 
+////////////////////////////////////
+
+always @(posedge CLK_FPGA_BOARD)
+begin
+	if (seleccion_salida_sincronizado) begin
+		Full_Bridge <= OutSignal_Modificacion_Ciclo_Trabajo_In_Distribucion_Salida;
+		BUCK_Gate <= 0;
+		end
+	else begin
+		Full_Bridge <= 0;
+		BUCK_Gate <= OutSignal_Modificacion_Ciclo_Trabajo_In_Distribucion_Salida;
+		end
+end
+/*
 Distribucion_Salida Instancia_Distribucion_Salida
 (	 
 .In_signal_conmutacion(OutSignal_Modificacion_Ciclo_Trabajo_In_Distribucion_Salida),
 .select_salida(seleccion_salida_sincronizado),
 .Out_signal_conmutacion({Full_Bridge,BUCK_Gate})//1 para full bridge y 0 para BUCK gate
 );
-
+*/
 endmodule

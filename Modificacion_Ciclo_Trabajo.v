@@ -31,9 +31,11 @@ module Modificacion_Ciclo_Trabajo(
     );
 	 
 wire [3:0] ref; //Referencia que entra al comparador a partir del contador A/D
+wire out_aumentar,out_disminuir;
+wire [3:0]out_contador_AD;
 	 
 Comp_16bits Instancia_Comparador (
-    .in(ciclo_actual), 
+    .in(out_contador_AD), 
     .out(signal_out), 
     .rst(rst), 
     .ref(ref), 
@@ -57,14 +59,16 @@ Contador_Ascendente_Descendente Instancia_Contador_AD (
     .reset(rst), 
     .enUP(out_aumentar), 
     .enDOWN(out_disminuir), 
-    .q(ref)
+    .q(out_contador_AD)
     );
 	 
 Contador_conReset Instancia_Contador_conReset
 (
 .clk(clk_de_trabajo),
 .reset(rst),
-.q(ciclo_actual)
+.q(ref)
  );
+ 
+ assign ciclo_actual = out_contador_AD;
  
 endmodule

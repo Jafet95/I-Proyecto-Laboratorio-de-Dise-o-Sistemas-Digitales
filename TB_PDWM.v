@@ -4,10 +4,10 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   09:38:47 03/06/2016
+// Create Date:   21:31:50 03/07/2016
 // Design Name:   DPWM
-// Module Name:   C:/Users/Jafet/Documents/Proyectos Dis.Sist.Digitales/I_Proyecto_Laboratorio_Sistemas_Digitales/DPWM_TestBench.v
-// Project Name:  I_Proyecto_Laboratorio_Sistemas_Digitales
+// Module Name:   D:/TEC/I 2016/Lab Digitales/Proyecto I/I-Proyecto-Laboratorio-de-Dise-o-Sistemas-Digitales/TB_PDWM.v
+// Project Name:  PRIMER_PROYECTO
 // Target Device:  
 // Tool versions:  
 // Description: 
@@ -22,8 +22,8 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module DPWM_TestBench;
-
+module TB_PDWM;
+ 
 	// Inputs
 	reg CLK_FPGA_BOARD;
 	reg boton_aumentar;
@@ -52,8 +52,11 @@ module DPWM_TestBench;
 		.catodos_7seg(catodos_7seg)
 	);
 
-	initial 
-	begin
+initial begin
+forever #0.5 CLK_FPGA_BOARD = ~CLK_FPGA_BOARD;
+end
+
+	initial begin
 		// Initialize Inputs
 		CLK_FPGA_BOARD = 0;
 		boton_aumentar = 0;
@@ -61,52 +64,66 @@ module DPWM_TestBench;
 		seleccion_funcion = 0;
 		seleccion_salida = 0;
 		reinicio = 0;
-	end
 
 		// Wait 100 ns for global reset to finish
-		//#100;
+		#10;
 		
-			
-			
-	//this process block sets up the free running clock
-		initial 
-		begin
-		CLK_FPGA_BOARD = 0;
-		forever #5 CLK_FPGA_BOARD = ~CLK_FPGA_BOARD;
-		end
+		boton_aumentar = 0;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 1;
+		#10
+		
+		boton_aumentar = 0;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
+		#10
+		
+		boton_aumentar = 1;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
+		#100
+		boton_aumentar = 0;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
+		#10
+		boton_aumentar = 1;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
+		#100
+		boton_aumentar = 0;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
+		
+				#10
+		
+		boton_aumentar = 1;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
+		#100
+		boton_aumentar = 0;
+		boton_disminuir = 0;
+		seleccion_funcion = 0;
+		seleccion_salida = 0;
+		reinicio = 0;
         
 		// Add stimulus here
-		
-		initial
-		begin
-		
-		reinicio = 1;
-		boton_aumentar = 0;
-		boton_disminuir = 0;
-		seleccion_funcion = 0;
-		seleccion_salida = 0;
-		#10
-		
-		reinicio = 0;
-		#10
-		
-		reinicio = 0;
-		boton_aumentar = 1;
-		#50
-		boton_aumentar = 0;
-		#20
-		boton_aumentar = 1;
-		#20
-		boton_aumentar = 0;
-		boton_disminuir = 0;
-		/*
-		seleccion_funcion = 0;
-		seleccion_salida = 0;
-		#200
-		*/ 
-		//#1000000$stop;
-		
-		end
+		#10000000$stop;
+ 
+	end
       
 endmodule
 
